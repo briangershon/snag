@@ -1,0 +1,37 @@
+{
+  "name": "snag",
+  "version": "0.0.1",
+  "description": "Plucks files out of GitHub.",
+  "keywords": "github, text, file",
+  "main": "lib/snag.js",
+  "scripts": {
+    "test": "mocha --reporter spec",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/briangershon/snag.git"
+  },
+  "author": {
+    "name": "Brian Gershon",
+    "url": "http://blog.evolvingbits.com/"
+  },
+  "license": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/briangershon/snag/raw/master/LICENSE"
+    }
+  ],
+  "engines": {
+    "node": "0.10.x"
+  },
+  "dependencies": {
+    "es6-promise": "~0.1.1"
+  },
+  "devDependencies": {
+    "mocha": "~1.17.1",
+    "chai": "~1.9.0",
+    "chai-as-promised": "~4.1.0",
+    "octonode": "~0.5.0"
+  }
+}
