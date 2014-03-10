@@ -10,9 +10,6 @@ var Snag = require('../lib/snag.js').Snag;
 /**
  * Pass in an err parameter to mock up an error.
  * Pass in a body parameter to mock up data coming back.
- * @param  {[type]} err  [description]
- * @param  {[type]} body [description]
- * @return {[type]}      [description]
  */
 function mockContents(err, body) {
   return {
@@ -22,15 +19,19 @@ function mockContents(err, body) {
   };
 }
 
+/**
+ * Tests
+ */
+
 describe('Snag', function () {
   describe('defaults', function () {
-    it('should have a postPath', function () {
+    it('should have a path', function () {
       var snag = new Snag({ghrepo: mockContents(null, [])});
-      expect(snag.postPath).to.equal('');
+      expect(snag.path).to.equal('');
     });
   });
 
-  describe('#listPosts', function () {
+  describe('#contents', function () {
     it('should return an empty list if no results', function (done) {
       var snag = new Snag({ghrepo: mockContents(null, null)});
       expect(snag.contents()).to.eventually.become([]).and.notify(done);
@@ -43,7 +44,7 @@ describe('Snag', function () {
 
     it('should return a rejected promise if an error occurs', function (done) {
       var snag = new Snag({ghrepo: mockContents({message: 'some error'}, null)});
-      expect(snag.contents()).to.eventually.be.rejectedWith('Can not retrieve posts: some error').and.notify(done);
+      expect(snag.contents()).to.eventually.be.rejectedWith('Can not retrieve files: some error').and.notify(done);
     });
   });
 
@@ -62,5 +63,11 @@ describe('Snag', function () {
       var snag = new Snag({ghrepo: mockContents(null, null)});
       expect(snag.getFile()).to.eventually.become(null).and.notify(done);
     });
+
+    it('should return a rejected promise if an error occurs', function (done) {
+      var snag = new Snag({ghrepo: mockContents({message: 'some error'}, null)});
+      expect(snag.getFile()).to.eventually.be.rejectedWith('Can not retrieve file: some error').and.notify(done);
+    });
+
   });
 });

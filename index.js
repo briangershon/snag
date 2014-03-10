@@ -14,7 +14,7 @@ var ghrepo = client.repo(envGitHubRepo);
 
 var gh = new Snag({
   ghrepo: ghrepo,
-  postPath: envPostPath
+  path: envPostPath
 });
 
 console.log('Retrieving files, then displaying their name and content:');
